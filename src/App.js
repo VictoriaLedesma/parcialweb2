@@ -9,14 +9,17 @@ function App() {
 
   <Router>
       <div className='App' >
-      </div>
+        <Header />
+      
       <Routes>
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/' element={<Inicio />} />
           <Route path='/contacto' element={<Contacto />} />
         </Routes>
-  </Router>
 
+        <Footer/>
+      </div>
+    </Router>
   );
 }
 
