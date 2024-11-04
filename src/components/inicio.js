@@ -58,14 +58,14 @@ const Inicio = () => {
             <header>
                 <nav>
                     <div className="nav-logo">
-                        <a href="inicio.html">
-                            <img src="img/vfnotes-logo.png" alt="vfnotes" />
+                        <a href="/">
+                            <img src="./img/vfnotes-logo.png" alt="vfnotes" />
                         </a>
                     </div>
                     <div className="nav-links">
-                        <a href="inicio.html" className="active">Inicio</a>
-                        <a href="nosotros.html">Acerca de</a>
-                        <a href="contacto.html">Contacto</a>
+                        <a href="/" className="active">Inicio</a>
+                        <a href="/nosotros.js">Acerca de</a>
+                        <a href="/contacto.js">Contacto</a>
                     </div>
                 </nav>
             </header>
