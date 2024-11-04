@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import React from "react";
-
 const Contacto = () => {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        nombre: '',
+        apellido: '',
+        email: '',
+        consulta: ''
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({ ...prevData, [name]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate('/resultado', { state: { formData } });
+    };
+
     return (
         <>
             <header>
@@ -33,18 +49,18 @@ const Contacto = () => {
                             </p>
                         </div>
                         <section className="contact-form">
-                            <form action="#" method="post">
+                            <form onSubmit={handleSubmit}>
                                 <label htmlFor="nombre">Nombre:</label>
-                                <input type="text" id="nombre" name="nombre" required />
+                                <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} required />
 
                                 <label htmlFor="apellido">Apellido:</label>
-                                <input type="text" id="apellido" name="apellido" required />
+                                <input type="text" id="apellido" name="apellido" value={formData.apellido} onChange={handleInputChange} required />
 
                                 <label htmlFor="email">Email:</label>
-                                <input type="email" id="email" name="email" required />
+                                <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
 
                                 <label htmlFor="consulta">Consulta:</label>
-                                <textarea id="consulta" name="consulta" rows="4" required></textarea>
+                                <textarea id="consulta" name="consulta" rows="4" value={formData.consulta} onChange={handleInputChange} required></textarea>
 
                                 <button type="submit">Enviar</button>
                             </form>
