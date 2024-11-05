@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import { Link } from "react-router-dom";
+import logo from "../img/vfnotes-logo.png";
 const Inicio = () => {
     const notasContenedorRef = useRef(null);
     const [notas, setNotas] = useState(JSON.parse(localStorage.getItem("notas")) || []);
@@ -59,13 +60,13 @@ const Inicio = () => {
                 <nav>
                     <div className="nav-logo">
                         <a href="/">
-                            <img src="./img/vfnotes-logo.png" alt="vfnotes" />
+                            <img src={logo} alt="vfnotes" />
                         </a>
                     </div>
                     <div className="nav-links">
-                        <a href="/" className="active">Inicio</a>
-                        <a href="/nosotros.js">Acerca de</a>
-                        <a href="/contacto.js">Contacto</a>
+                        <Link to="/" className="active">Inicio</Link>
+                        <Link to="/nosotros">Acerca de</Link>
+                        <Link to="/contacto">Contacto</Link>
                     </div>
                 </nav>
             </header>

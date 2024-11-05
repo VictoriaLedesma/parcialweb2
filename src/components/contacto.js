@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import logo from "../img/vfnotes-logo.png";
 const Contacto = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -25,18 +26,18 @@ const Contacto = () => {
             <header>
                 <nav>
                     <div className="nav-logo">
-                        <a href="inicio.html">
-                            <img src="img/vfnotes-logo.png" alt="vfnotes" />
+                        <a href="/">
+                            <img src={logo} alt="vfnotes" />
                         </a>
                     </div>
                     <div className="nav-links">
-                        <a href="inicio.html">Inicio</a>
-                        <a href="nosotros.html">Acerca de</a>
-                        <a href="contacto.html" className="active">Contacto</a>
+                    <Link to="/">Inicio</Link>
+                        <Link to="/nosotros">Acerca de</Link>
+                        <Link to="/contacto"  className="active">Contacto</Link>
                     </div>
                 </nav>
             </header>
-
+        <main>
             <div className="contact-page">
                 <div className="contact-content">
                     <h2>Formulario de Contacto</h2>
@@ -74,6 +75,7 @@ const Contacto = () => {
                     </div>
                 </div>
             </div>
+        </main>
 
             <footer>
                 <p>&copy; 2024 VFnotes. Todos los derechos reservados.</p>

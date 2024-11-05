@@ -35,6 +35,8 @@ const Resultado = () => {
             </div>
             <button className="boton-respuesta" onClick={() => navigate('/contacto')}>Volver al formulario</button>
         </div>
+       
+       
     );
 };
 

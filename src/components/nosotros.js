@@ -1,7 +1,26 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import logo from "../img/vfnotes-logo.png";
+import vickyfoto from "../img/vickyfoto.jpeg";
+import fede from "../img/fede.png";
 const Nosotros = () => {
     return (
+        <>
+            <header>
+                <nav>
+                    <div className="nav-logo">
+                        <a href="/">
+                            <img src={logo} alt="vfnotes" />
+                        </a>
+                    </div>
+                    <div className="nav-links">
+                        <Link to="/">Inicio</Link>
+                        <Link to="/nosotros" className="active">Acerca de</Link>
+                        <Link to="/contacto">Contacto</Link>
+                    </div>
+                </nav>
+            </header>
+
         <main>
             <section className="about-page">
                 <div className="about-content">
@@ -25,11 +44,11 @@ const Nosotros = () => {
 
                     <div className="team-container">
                         <div className="team-member card">
-                            <img src="img/fede.png" alt="Federico Reiz" />
+                            <img src={fede} alt="Federico Reiz" />
                             <h3>Federico Reiz</h3>
                         </div>
                         <div className="team-member card">
-                            <img src="img/vickyfoto.jpeg" alt="Victoria Ledesma" />
+                            <img src={vickyfoto} alt="Victoria Ledesma" />
                             <h3>Victoria Ledesma</h3>
                         </div>
                     </div>
@@ -39,6 +58,12 @@ const Nosotros = () => {
                 </div>
             </section>
         </main>
+        
+        <footer>
+                <p>&copy; 2024 VFnotes. Todos los derechos reservados.</p>
+            </footer>
+
+        </>
     );
 };
 
