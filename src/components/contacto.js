@@ -3,23 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import logo from "../img/vfnotes-logo.png";
 const Contacto = () => {
+    const [formData, setFormData] = useState({ nombre: '', apellido: '', email: '', consulta: '' });
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        nombre: '',
-        apellido: '',
-        email: '',
-        consulta: ''
-    });
+    const [showResult, setShowResult] = useState(false);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({ ...prevData, [name]: value }));
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         navigate('/resultado', { state: { formData } });
     };
+
 
     return (
         <>
@@ -31,51 +30,65 @@ const Contacto = () => {
                         </a>
                     </div>
                     <div className="nav-links">
-                    <Link to="/">Inicio</Link>
+                        <Link to="/">Inicio</Link>
                         <Link to="/nosotros">Acerca de</Link>
-                        <Link to="/contacto"  className="active">Contacto</Link>
+                        <Link to="/contacto" className="active">Contacto</Link>
                     </div>
                 </nav>
             </header>
-        <main>
-            <div className="contact-page">
-                <div className="contact-content">
-                    <h2>Formulario de Contacto</h2>
-                    <div className="contact-container">
+            <main>
+                <div className="contact-page">
+                    <div className="contact-content">
+                        <h2>Formulario de Contacto</h2>
+                        <div className="contact-container">
+                            <div className="contact-message">
+                                <p>
+                                    ¿Tienes alguna duda sobre VFnotes, necesitas ayuda o simplemente
+                                    quieres sugerirnos algo? Rellena el siguiente formulario, a la
+                                    brevedad te responderemos.
+                                </p>
+                            </div>
+                            <section className="contact-form">
+                                <div>
+                                    <h2>Formulario de Contacto</h2>
+                                    <form onSubmit={handleSubmit}>
+                                        {showResult && (
+                                            <div className="resultado">
+                                                <h2 className="titulo-respuesta">Resultado del Formulario de Contacto</h2>
+                                                <div className="respuestas">
+                                                    <p className="respuesta"><strong>Nombre:</strong> {formData.nombre}</p>
+                                                    <p className="respuesta"><strong>Apellido:</strong> {formData.apellido}</p>
+                                                    <p className="respuesta"><strong>Email:</strong> {formData.email}</p>
+                                                    <p className="respuesta"><strong>Consulta:</strong> {formData.consulta}</p>
+                                                </div>
+                                            </div>
+                                        )}
+                                        <label>Nombre:
+                                            <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
+                                        </label>
+                                        <label>Apellido:
+                                            <input type="text" name="apellido" value={formData.apellido} onChange={handleChange} required />
+                                        </label>
+                                        <label>Email:
+                                            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                                        </label>
+                                        <label>Consulta:
+                                            <textarea name="consulta" value={formData.consulta} onChange={handleChange} required />
+                                        </label>
+                                        <button type="submit">Enviar</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
                         <div className="contact-message">
                             <p>
-                                ¿Tienes alguna duda sobre VFnotes, necesitas ayuda o simplemente
-                                quieres sugerirnos algo? Rellena el siguiente formulario, a la
-                                brevedad te responderemos.
+                                Estamos aquí para ayudarte con cualquier consulta o sugerencia que tengas.
+                                ¡No dudes en contactarnos!
                             </p>
                         </div>
-                        <section className="contact-form">
-                            <form onSubmit={handleSubmit}>
-                                <label htmlFor="nombre">Nombre:</label>
-                                <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} required />
-
-                                <label htmlFor="apellido">Apellido:</label>
-                                <input type="text" id="apellido" name="apellido" value={formData.apellido} onChange={handleInputChange} required />
-
-                                <label htmlFor="email">Email:</label>
-                                <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
-
-                                <label htmlFor="consulta">Consulta:</label>
-                                <textarea id="consulta" name="consulta" rows="4" value={formData.consulta} onChange={handleInputChange} required></textarea>
-
-                                <button type="submit">Enviar</button>
-                            </form>
-                        </section>
-                    </div>
-                    <div className="contact-message">
-                        <p>
-                            Estamos aquí para ayudarte con cualquier consulta o sugerencia que tengas.
-                            ¡No dudes en contactarnos!
-                        </p>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
             <footer>
                 <p>&copy; 2024 VFnotes. Todos los derechos reservados.</p>

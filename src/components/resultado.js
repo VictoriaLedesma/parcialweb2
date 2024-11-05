@@ -6,7 +6,6 @@ const Resultado = () => {
     const navigate = useNavigate();
     const formData = location.state?.formData;
 
-    // Si no hay datos, redirige de vuelta al formulario
     if (!formData) {
         return (
             <div>
@@ -35,8 +34,6 @@ const Resultado = () => {
             </div>
             <button className="boton-respuesta" onClick={() => navigate('/contacto')}>Volver al formulario</button>
         </div>
-       
-       
     );
 };
 
