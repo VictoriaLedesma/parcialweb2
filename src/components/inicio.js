@@ -1,14 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/vfnotes-logo.png";
 const Inicio = () => {
     const notasContenedorRef = useRef(null);
     const [notas, setNotas] = useState(JSON.parse(localStorage.getItem("notas")) || []);
     const [notaSeleccionada, setNotaSeleccionada] = useState(null);
-
-    useEffect(() => {
-        cargarNotas();
-    }, []);
 
     const cargarNotas = () => {
         setNotas(JSON.parse(localStorage.getItem("notas")) || []);
@@ -82,7 +78,7 @@ const Inicio = () => {
                 <div className="notas-contenedor" ref={notasContenedorRef}>
                     {notas.map((texto, index) => (
                         <div
-                            key={index}
+                            key={`nota-contenedor-${index}`}
                             className={`note-cell ${notaSeleccionada === index ? "selected" : ""}`}
                             onClick={() => handleSeleccionarNota(index)}
                         >
