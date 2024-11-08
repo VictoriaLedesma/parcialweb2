@@ -342,6 +342,28 @@ footer {
   background-color: #670301;
 }
 
+.no-border {
+  border: none;
+  background: none;
+  pointer-events: none;
+  color: black; /* Asegúrate de que el texto sea visible */
+}
+
+.exito-mensaje {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #4CAF50;
+  background-color: #dff0d8;
+  color: #3c763d;
+  border-radius: 5px;
+}
+
+.exito-texto {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
 /* Animaciones Contacto */
 @keyframes fadeIn {
   to {
