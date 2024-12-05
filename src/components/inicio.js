@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/vfnotes-logo.png";
+
 const Inicio = () => {
     const notasContenedorRef = useRef(null);
     const [notas, setNotas] = useState(JSON.parse(localStorage.getItem("notas")) || []);
@@ -64,6 +65,10 @@ const Inicio = () => {
                         <Link to="/nosotros">Acerca de</Link>
                         <Link to="/contacto">Contacto</Link>
                     </div>
+                    <div className="auth-buttons">
+                        <Link to="/login" className="auth-button">Iniciar Sesión</Link>
+                        <Link to="/registrarse" className="auth-button">Registrarse</Link>
+                    </div>
                 </nav>
             </header>
 
@@ -105,3 +110,4 @@ const Inicio = () => {
 };
 
 export default Inicio;
+

@@ -18,6 +18,10 @@ const Nosotros = () => {
                         <Link to="/nosotros" className="active">Acerca de</Link>
                         <Link to="/contacto">Contacto</Link>
                     </div>
+                    <div className="auth-buttons">
+                        <Link to="/iniciar-sesion" className="auth-button">Iniciar Sesión</Link>
+                        <Link to="/registrarse" className="auth-button">Registrarse</Link>
+                    </div>
                 </nav>
             </header>
 

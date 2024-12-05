@@ -34,6 +34,10 @@ const Contacto = () => {
                         <Link to="/nosotros">Acerca de</Link>
                         <Link to="/contacto" className="active">Contacto</Link>
                     </div>
+                    <div className="auth-buttons">
+                        <Link to="/iniciar-sesion" className="auth-button">Iniciar Sesión</Link>
+                        <Link to="/registrarse" className="auth-button">Registrarse</Link>
+                    </div>
                 </nav>
             </header>
             <main>
