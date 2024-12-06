@@ -13,15 +13,37 @@ const Registrarse = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmarPassword) {
             alert("Las contraseñas no coinciden");
             return;
         }
-        console.log("Registrando usuario:", formData);
-        // Después del registro exitoso, redirigir al usuario
-        navigate('/');
+
+        try {
+            const response = await fetch("http://localhost:5000/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nombre: formData.nombre,
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            });
+
+            const data = await response.json();
+            console.log("Respuesta del servidor:", data);
+
+            if (response.ok) {
+                alert(data.message);
+                navigate("/login");
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error("Error al registrar:", error);
+            alert("Error de red o del servidor");
+        }
     };
 
     return (
@@ -52,46 +74,46 @@ const Registrarse = () => {
                         <form onSubmit={handleSubmit} className="auth-form">
                             <div className="form-group">
                                 <label htmlFor="nombre">Nombre:</label>
-                                <input 
-                                    type="text" 
-                                    id="nombre" 
-                                    name="nombre" 
-                                    value={formData.nombre} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="text"
+                                    id="nombre"
+                                    name="nombre"
+                                    value={formData.nombre}
+                                    onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email:</label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    value={formData.email} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Contraseña:</label>
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    name="password" 
-                                    value={formData.password} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="confirmarPassword">Confirmar Contraseña:</label>
-                                <input 
-                                    type="password" 
-                                    id="confirmarPassword" 
-                                    name="confirmarPassword" 
-                                    value={formData.confirmarPassword} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="password"
+                                    id="confirmarPassword"
+                                    name="confirmarPassword"
+                                    value={formData.confirmarPassword}
+                                    onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <button type="submit" className="auth-submit">Registrarse</button>
@@ -111,4 +133,3 @@ const Registrarse = () => {
 };
 
 export default Registrarse;
-

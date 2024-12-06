@@ -13,12 +13,32 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Iniciando sesión con:", formData);
-        // Después de la autenticación exitosa, redirigir al usuario
-        navigate('/');
+    
+        try {
+            const response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                alert(data.message);
+                localStorage.setItem("token", data.token); 
+                navigate("/");
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+        }
     };
+    
 
     return (
         <>
