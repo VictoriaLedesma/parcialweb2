@@ -10,7 +10,6 @@ import Registrarse from './components/registrarse';
 function App() {
   return (
     <Router>
-      <div className='App'>
         <Routes>
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/' element={<Inicio />} />
@@ -19,7 +18,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registrarse" element={<Registrarse />} />
         </Routes>
-      </div>
     </Router>
   );
 }

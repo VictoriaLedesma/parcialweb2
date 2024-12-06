@@ -3,30 +3,10 @@ import { Link } from "react-router-dom";
 import logo from "../img/vfnotes-logo.png";
 import vickyfoto from "../img/vickyfoto.jpeg";
 import fede from "../img/fede.png";
+import Layout from "./layout";
 const Nosotros = () => {
-    return (
-        <>
-            <header>
-                <nav>
-                    <div className="nav-logo">
-                        <a href="/">
-                            <img src={logo} alt="vfnotes" />
-                        </a>
-                    </div>
-                    <div className="nav-links">
-                        <Link to="/">Inicio</Link>
-                        <Link to="/nosotros" className="active">Acerca de</Link>
-                        <Link to="/contacto">Contacto</Link>
-                    </div>
-                    <div className="auth-buttons">
-                        <Link to="/iniciar-sesion" className="auth-button">Iniciar Sesión</Link>
-                        <Link to="/registrarse" className="auth-button">Registrarse</Link>
-                    </div>
-                </nav>
-            </header>
-
-        <main>
-            <section className="about-page">
+    return <Layout>
+        <section className="about-page">
                 <div className="about-content">
                     <h1 className="h1-nosotros">Nosotros</h1>
                     <div className="about-columns">
@@ -61,14 +41,7 @@ const Nosotros = () => {
                     <p>Si quieres saber más sobre nosotros, nuestros proyectos o simplemente tienes alguna duda o sugerencia, no dudes en <a href="contacto.html">contactarnos</a>!</p>
                 </div>
             </section>
-        </main>
-        
-        <footer>
-                <p>&copy; 2024 VFnotes. Todos los derechos reservados.</p>
-            </footer>
-
-        </>
-    );
+    </Layout>
 };
 
 export default Nosotros;

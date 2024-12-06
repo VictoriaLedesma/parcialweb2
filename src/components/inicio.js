@@ -1,15 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../img/vfnotes-logo.png";
+import Layout from "./layout";
 
 const Inicio = () => {
+    
     const notasContenedorRef = useRef(null);
     const [notas, setNotas] = useState(JSON.parse(localStorage.getItem("notas")) || []);
     const [notaSeleccionada, setNotaSeleccionada] = useState(null);
 
-    const cargarNotas = () => {
-        setNotas(JSON.parse(localStorage.getItem("notas")) || []);
-    };
+
 
     const agregarFila = (texto = "") => {
         setNotas((prevNotas) => [...prevNotas, texto]);
@@ -51,29 +49,10 @@ const Inicio = () => {
         }
     };
 
-    return (
-        <>
-            <header>
-                <nav>
-                    <div className="nav-logo">
-                        <a href="/">
-                            <img src={logo} alt="vfnotes" />
-                        </a>
-                    </div>
-                    <div className="nav-links">
-                        <Link to="/" className="active">Inicio</Link>
-                        <Link to="/nosotros">Acerca de</Link>
-                        <Link to="/contacto">Contacto</Link>
-                    </div>
-                    <div className="auth-buttons">
-                        <Link to="/login" className="auth-button">Iniciar Sesión</Link>
-                        <Link to="/registrarse" className="auth-button">Registrarse</Link>
-                    </div>
-                </nav>
-            </header>
+ 
 
-            <main>
-                <h1>MIS NOTAS:</h1>
+    return <Layout>
+        <h1>MIS NOTAS:</h1>
                 <div className="buttons">
                     <button onClick={handleAgregarNota}>Agregar ➕</button>
                     <button onClick={handleEliminarNota}>Eliminar 🗑️</button>
@@ -100,14 +79,7 @@ const Inicio = () => {
                         </div>
                     ))}
                 </div>
-            </main>
-
-            <footer>
-                <p>&copy; 2024 VFnotes. Todos los derechos reservados.</p>
-            </footer>
-        </>
-    );
+    </Layout>
 };
 
 export default Inicio;
-
