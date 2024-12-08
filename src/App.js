@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'; 
+import { Toaster } from 'sonner'
 
 import Nosotros from './components/nosotros';
 import Inicio from './components/inicio';
@@ -10,6 +11,7 @@ import Registrarse from './components/registrarse';
 function App() {
   return (
     <Router>
+        <Toaster richColors />
         <Routes>
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/' element={<Inicio />} />
@@ -23,3 +25,4 @@ function App() {
 }
 
 export default App;
+

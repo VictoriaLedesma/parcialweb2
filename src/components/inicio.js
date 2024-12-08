@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import Layout from "./layout";
+import { Toaster, toast } from 'sonner'
 
 const Inicio = () => {
     
     const notasContenedorRef = useRef(null);
     const [notas, setNotas] = useState(JSON.parse(localStorage.getItem("notas")) || []);
     const [notaSeleccionada, setNotaSeleccionada] = useState(null);
-
-
 
     const agregarFila = (texto = "") => {
         setNotas((prevNotas) => [...prevNotas, texto]);
@@ -23,13 +22,26 @@ const Inicio = () => {
     };
 
     const handleReset = () => {
-        const confirmReset = window.confirm(
-            "¿Estás seguro de que deseas resetear todas las notas? Esta acción no se puede deshacer."
-        );
-        if (confirmReset) {
-            localStorage.clear();
-            setNotas([]);
-        }
+        const toastId = toast((t) => (
+            <div>
+                <p>¿Estás seguro de que deseas resetear todas las notas? Esta acción no se puede deshacer.</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                    <button onClick={() => {
+                        localStorage.clear();
+                        setNotas([]);
+                        toast.success("Todas las notas han sido eliminadas");
+                        toast.dismiss(toastId);
+                    }}>
+                        Confirmar
+                    </button>
+                    <button onClick={() => toast.dismiss(toastId)}>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        ), {
+            duration: Infinity,
+        });
     };
 
     const handleSeleccionarNota = (index) => {
@@ -38,18 +50,31 @@ const Inicio = () => {
 
     const handleEliminarNota = () => {
         if (notaSeleccionada !== null) {
-            const confirmEliminar = window.confirm("¿Seguro que desea eliminar esta nota?");
-            if (confirmEliminar) {
-                const nuevasNotas = notas.filter((_, idx) => idx !== notaSeleccionada);
-                guardarNotas(nuevasNotas);
-                setNotaSeleccionada(null);
-            }
+            const toastId = toast((t) => (
+                <div>
+                    <p>¿Seguro que desea eliminar esta nota?</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                        <button onClick={() => {
+                            const nuevasNotas = notas.filter((_, idx) => idx !== notaSeleccionada);
+                            guardarNotas(nuevasNotas);
+                            setNotaSeleccionada(null);
+                            toast.success("Nota eliminada con éxito");
+                            toast.dismiss(toastId);
+                        }}>
+                            Confirmar
+                        </button>
+                        <button onClick={() => toast.dismiss(toastId)}>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            ), {
+                duration: Infinity,
+            });
         } else {
-            alert("Por favor, seleccione una nota para eliminar.");
+            toast.error("Por favor, seleccione una nota para eliminar.");
         }
     };
-
- 
 
     return <Layout>
         <h1>MIS NOTAS:</h1>
@@ -79,7 +104,9 @@ const Inicio = () => {
                         </div>
                     ))}
                 </div>
+        <Toaster richColors />
     </Layout>
 };
 
 export default Inicio;
+

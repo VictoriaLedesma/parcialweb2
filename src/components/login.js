@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'sonner';
 import logo from "../img/vfnotes-logo.png";
 import Layout from "./layout";
 
@@ -29,19 +30,21 @@ const Login = () => {
 
             const data = await response.json();
             if (response.ok) {
-                alert(data.message);
+                toast.success("Inicio de sesión exitoso");
                 localStorage.setItem("token", data.token);
                 navigate("/");
             } else {
-                alert(data.message);
+                toast.error(data.message);
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
+            toast.error("Error al iniciar sesión. Por favor, intente de nuevo.");
         }
     };
 
 
     return <Layout>
+        <Toaster richColors />
         <div className="auth-page">
                     <div className="auth-content">
                         <h2>Iniciar Sesión</h2>
