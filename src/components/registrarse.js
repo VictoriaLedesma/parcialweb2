@@ -7,6 +7,7 @@ import Layout from "./layout";
 const Registrarse = () => {
     const [formData, setFormData] = useState({ nombre: '', email: '', password: '', confirmarPassword: '' });
     const navigate = useNavigate();
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
     const handleChange = (e) => {
         setFormData({
@@ -23,7 +24,7 @@ const Registrarse = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/register", {
+            const response = await fetch(`${apiUrl}/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -44,7 +45,7 @@ const Registrarse = () => {
             }
         } catch (error) {
             console.error("Error al registrar:", error);
-            toast.error("Error de red o del servidor");
+            toast.error("Error de red o del servidor. Por favor, intente más tarde.");
         }
     };
 

@@ -7,6 +7,7 @@ import Layout from "./layout";
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
     const handleChange = (e) => {
         setFormData({
@@ -19,7 +20,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:5000/login", {
+            const response = await fetch(`${apiUrl}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -38,10 +39,9 @@ const Login = () => {
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
-            toast.error("Error al iniciar sesión. Por favor, intente de nuevo.");
+            toast.error("Error de red o del servidor. Por favor, intente más tarde.");
         }
     };
-
 
     return <Layout>
         <Toaster richColors />
