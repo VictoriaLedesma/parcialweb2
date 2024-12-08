@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'sonner';
 import logo from "../img/vfnotes-logo.png";
 import Layout from "./layout";
 
@@ -17,7 +18,7 @@ const Registrarse = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmarPassword) {
-            alert("Las contraseñas no coinciden");
+            toast.error("Las contraseñas no coinciden");
             return;
         }
 
@@ -36,18 +37,19 @@ const Registrarse = () => {
             console.log("Respuesta del servidor:", data);
 
             if (response.ok) {
-                alert(data.message);
+                toast.success("Usuario registrado exitosamente");
                 navigate("/login");
             } else {
-                alert(data.message);
+                toast.error(data.message);
             }
         } catch (error) {
             console.error("Error al registrar:", error);
-            alert("Error de red o del servidor");
+            toast.error("Error de red o del servidor");
         }
     };
 
     return <Layout>
+        <Toaster richColors />
         <div className="auth-page">
             <div className="auth-content">
                 <h2>Registrarse</h2>
@@ -107,3 +109,4 @@ const Registrarse = () => {
 };
 
 export default Registrarse;
+
