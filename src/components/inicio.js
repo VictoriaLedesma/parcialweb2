@@ -27,7 +27,7 @@ const Inicio = () => {
                 <p>¿Estás seguro de que deseas resetear todas las notas? Esta acción no se puede deshacer.</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                     <button onClick={() => {
-                        localStorage.clear();
+                        localStorage.removeItem("notas");
                         setNotas([]);
                         toast.success("Todas las notas han sido eliminadas");
                         toast.dismiss(toastId);
