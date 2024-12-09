@@ -9,6 +9,8 @@ const Login = () => {
     const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
     console.log('API URL:', apiUrl);
+    console.log('API URL ENV:', process.env.REACT_APP_API_URL);
+    console.log('API ENV:', process.env);
 
     const handleChange = (e) => {
         setFormData({
